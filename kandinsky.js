@@ -99,6 +99,9 @@ function analyse() {
         document.getElementById("skew-button-1").style.backgroundColor = rgba;
         document.getElementById("skew-button-2").style.backgroundColor = rgba;
         document.getElementById("skew-button-3").style.backgroundColor = rgba;
+
+        document.getElementById("upload-button-1").style.backgroundColor = rgba;
+        document.getElementById("upload-button-2").style.backgroundColor = rgba;
     }, 0);
 }
 
@@ -141,7 +144,6 @@ function changeSkew(newSkew) {
 function uploadFile() {
     let input = document.createElement('input');
     input.type = 'file';
-    input.accept = 'audio';
     input.onchange = () => {
         let file = input.files[0]; // Get the first selected file
         if (file) {
@@ -150,27 +152,18 @@ function uploadFile() {
                 let fileURL = e.target.result;
                 console.log(fileURL);
 
-                document.getElementById("cv").className = "button-warning";
-                document.getElementById("cv-text").innerText = "Uploading...";
-                document.getElementById("cv-icon").innerText = "downloading";
-                document.getElementById("cv").inert = "true";
-
-                setTimeout(() => {
-                    document.getElementById("cv").className = "card-success";
-                    document.getElementById("cv-text").innerText = "Upload complete";
-                    document.getElementById("cv-icon").innerText = "cloud_done";
-                    document.getElementById("cv").inert = "true";
-
-                    cvUploaded = true;
-
-                    if (human) {
-                        document.getElementById("action-card").classList.remove("card");
-                        document.getElementById("action-card").classList.add("card-success");
-                    }
-                }, 2500);
+                document.getElementById("audio-element").src = fileURL;
+                document.getElementById("audio-element").play();
             };
             reader.readAsDataURL(file); // Read the file as a data URL
         }
     };
     input.click();
+}
+
+function uploadLink() {
+    var url = prompt("URL:");
+
+    document.getElementById("audio-element").src = url;
+    document.getElementById("audio-element").play();
 }
