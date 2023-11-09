@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kandinsky Engine</title>
+
+    <link rel="stylesheet" href="https://nadir-software.github.io/nadircss/nadir.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <style>
+        * {
+            transition: 0.05s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar" class="navbar">
+        <h1>Kandinsky Engine</h1>
+    </div>
+
+    <div id="skew-controls" class="card column">
+        <h1>Skew</h1>
+
+        <div class="row">
+            <button id="skew-button-1" onclick="changeSkew('red')" class="card">
+                <span class="material-symbols-rounded">tune</span>
+                Skew Red/Orange
+            </button>
+            
+            <button id="skew-button-2" onclick="changeSkew('green')" class="card">
+                <span class="material-symbols-rounded">tune</span>
+                Skew Green/Yellow
+            </button>
+
+            <button id="skew-button-3" onclick="changeSkew('blue')" class="card">
+                <span class="material-symbols-rounded">tune</span>
+                Skew Blue
+            </button>
+        </div>
+    </div>
+    
+    <audio crossorigin="anonymous" id="audio-element" onplay="analyse()" src="https://nadir-software.github.io/cdn/U & ME.mp3" controls="controls"></audio>
+
+    <script src="kandinsky.js"></script>
+</body>
+</html>
