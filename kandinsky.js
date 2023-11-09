@@ -5,7 +5,7 @@ function analyse() {
 	
     // Create an analyzer node to analyze the audio
     const analyser = audioContext.createAnalyser();
-    analyser.fftSize = 256; // Adjust the FFT size as needed for your analysis
+    analyser.fftSize = 256;
 
     // Connect the audio source to the analyzer
     const audioElement = document.getElementById('audio-element');
@@ -102,7 +102,75 @@ function analyse() {
     }, 0);
 }
 
+function rgbaToHex(rgba) {
+    // Check if the input is a valid RGBA string
+    const rgbaRegex = /^rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)$/;
+  
+    if (!rgbaRegex.test(rgba)) {
+      return null; // Invalid input
+    }
+  
+    // Extract RGBA values
+    const [, r, g, b, a] = rgba.match(rgbaRegex);
+  
+    // Convert the values to hexadecimal and ensure they have two digits
+    const toHex = (value) => {
+      const hex = parseInt(value, 10).toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    };
+  
+    const hexR = toHex(r);
+    const hexG = toHex(g);
+    const hexB = toHex(b);
+  
+    // Convert the alpha value to a hexadecimal value (between 00 and FF)
+    const alpha = Math.round(parseFloat(a) * 255);
+    const hexA = toHex(alpha);
+  
+    // Construct the hexadecimal color string
+    const hexColor = `#${hexR}${hexG}${hexB}${hexA}`;
+  
+    return hexColor;
+}
+
 // Function to change the skew variable
 function changeSkew(newSkew) {
     skew = newSkew;
+}
+
+function uploadFile() {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'audio';
+    input.onchange = () => {
+        let file = input.files[0]; // Get the first selected file
+        if (file) {
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                let fileURL = e.target.result;
+                console.log(fileURL);
+
+                document.getElementById("cv").className = "button-warning";
+                document.getElementById("cv-text").innerText = "Uploading...";
+                document.getElementById("cv-icon").innerText = "downloading";
+                document.getElementById("cv").inert = "true";
+
+                setTimeout(() => {
+                    document.getElementById("cv").className = "card-success";
+                    document.getElementById("cv-text").innerText = "Upload complete";
+                    document.getElementById("cv-icon").innerText = "cloud_done";
+                    document.getElementById("cv").inert = "true";
+
+                    cvUploaded = true;
+
+                    if (human) {
+                        document.getElementById("action-card").classList.remove("card");
+                        document.getElementById("action-card").classList.add("card-success");
+                    }
+                }, 2500);
+            };
+            reader.readAsDataURL(file); // Read the file as a data URL
+        }
+    };
+    input.click();
 }

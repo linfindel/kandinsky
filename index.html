@@ -13,12 +13,18 @@
         * {
             transition: 0.05s ease;
         }
+
+        audio {
+            filter: invert();
+        }
     </style>
 </head>
 <body>
     <div id="navbar" class="navbar">
         <h1>Kandinsky Engine</h1>
     </div>
+
+    <audio crossorigin="anonymous" id="audio-element" onplay="analyse()" src="https://nadir-software.github.io/cdn/U & ME.mp3" controls></audio>
 
     <div id="skew-controls" class="card column">
         <h1>Skew</h1>
@@ -40,8 +46,6 @@
             </button>
         </div>
     </div>
-    
-    <audio crossorigin="anonymous" id="audio-element" onplay="analyse()" src="https://nadir-software.github.io/cdn/U & ME.mp3" controls="controls"></audio>
 
     <script src="kandinsky.js"></script>
 </body>
