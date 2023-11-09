@@ -1,19 +1,33 @@
-var skew = "blue"; // Declare skew in the global scope
+let skew = "blue";
+let analysisInterval;
+let setupComplete;
+let audioContext;
+let analyser;
+let audioElement;
+let audioSource;
 
-function analyse() {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+function setupAnalysis() {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
 	
     // Create an analyzer node to analyze the audio
-    const analyser = audioContext.createAnalyser();
+    analyser = audioContext.createAnalyser();
     analyser.fftSize = 256;
 
     // Connect the audio source to the analyzer
-    const audioElement = document.getElementById('audio-element');
-    const audioSource = audioContext.createMediaElementSource(audioElement);
+    audioElement = document.getElementById('audio-element');
+    audioSource = audioContext.createMediaElementSource(audioElement);
     audioSource.connect(analyser);
     audioSource.connect(audioContext.destination);
 
-    setInterval(() => {	
+    setupComplete = true;
+}
+
+function analyse() {
+    if (!setupComplete) {
+        setupAnalysis();
+    }
+
+    analysisInterval = setInterval(() => {
 	    // Get frequency data
 	    const frequencyData = new Uint8Array(analyser.frequencyBinCount);
 	
@@ -103,6 +117,10 @@ function analyse() {
         document.getElementById("upload-button-1").style.backgroundColor = rgba;
         document.getElementById("upload-button-2").style.backgroundColor = rgba;
     }, 0);
+}
+
+function stopAnalysis() {
+    clearInterval(analysisInterval);
 }
 
 function rgbaToHex(rgba) {
