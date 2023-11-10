@@ -22,20 +22,22 @@
 
     <audio crossorigin="anonymous" id="audio-element" onplay="analyse()" onpause="stopAnalysis()" src="https://nadir-software.github.io/cdn/Cry_Me_A_River.mp3" controls></audio>
 
-    <div class="row">
-        <button id="upload-button-1" onclick="uploadFile()">
-            <span class="material-symbols-rounded">upload_file</span>
-            Upload from file
-        </button>
+    <div class="column">
+        <div class="row">
+            <button id="upload-button-1" onclick="uploadFile()">
+                <span class="material-symbols-rounded">upload_file</span>
+                Upload from file
+            </button>
 
-        <button id="upload-button-2" onclick="uploadLink()">
-            <span class="material-symbols-rounded">add_link</span>
-            Upload from URL
-        </button>
+            <button id="upload-button-2" onclick="uploadLink()">
+                <span class="material-symbols-rounded">add_link</span>
+                Upload from URL
+            </button>
+        </div>
     </div>
 
     <div id="skew-controls" class="card column">
-        <h1>Skew</h1>
+        <h1 id="output">Skew</h1>
 
         <div class="row">
             <button id="skew-button-1" onclick="changeSkew('red')" class="card">

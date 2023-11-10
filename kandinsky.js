@@ -107,6 +107,8 @@ function analyse() {
             rgba = `rgba(${lowVolume}, ${midVolume}, ${highVolume}, ${alpha})`;
         }
 
+        console.log("RGBA:", rgba);
+
         document.getElementById("navbar").style.backgroundColor = rgba;
         document.getElementById("skew-controls").style.backgroundColor = rgba;
 
@@ -116,6 +118,8 @@ function analyse() {
 
         document.getElementById("upload-button-1").style.backgroundColor = rgba;
         document.getElementById("upload-button-2").style.backgroundColor = rgba;
+
+        document.getElementById("output").innerText = rgbaToHex(rgba);
     }, 0);
 }
 
@@ -125,7 +129,7 @@ function stopAnalysis() {
 
 function rgbaToHex(rgba) {
     // Check if the input is a valid RGBA string
-    const rgbaRegex = /^rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)$/;
+    const rgbaRegex = /^rgba\((\d+\.?\d*),\s*(\d+\.?\d*),\s*(\d+\.?\d*),\s*([\d.]+)\)$/;
   
     if (!rgbaRegex.test(rgba)) {
       return null; // Invalid input
@@ -136,7 +140,8 @@ function rgbaToHex(rgba) {
   
     // Convert the values to hexadecimal and ensure they have two digits
     const toHex = (value) => {
-      const hex = parseInt(value, 10).toString(16);
+      const intValue = Math.round(parseFloat(value));
+      const hex = intValue.toString(16);
       return hex.length === 1 ? '0' + hex : hex;
     };
   
@@ -152,7 +157,7 @@ function rgbaToHex(rgba) {
     const hexColor = `#${hexR}${hexG}${hexB}${hexA}`;
   
     return hexColor;
-}
+  }
 
 // Function to change the skew variable
 function changeSkew(newSkew) {
