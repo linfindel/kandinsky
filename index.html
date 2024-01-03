@@ -1,67 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kandinsky Engine</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kandinsky Engine</title>
 
-    <link rel="stylesheet" href="https://linfindel.github.io/nadircss/nadir.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://linfindel.github.io/nadircss/nadir.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-    <style>
-        * {
-            transition: 0.05s ease;
-        }
-    </style>
+  <style>
+    * {
+      transition: 0.05s ease;
+    }
+  </style>
 </head>
 <body>
-    <div id="navbar" class="navbar">
-        <h1>Kandinsky Engine</h1>
+  <div id="navbar" class="navbar">
+    <h1>Kandinsky Engine</h1>
+  </div>
+
+  <audio crossorigin="anonymous" id="audio-element" onplay="analyse()" onpause="stopAnalysis()" src="https://linfindel.github.io/cdn/Cry_Me_A_River.mp3" controls></audio>
+
+  <div class="column">
+    <div class="row">
+      <button id="upload-button-1" onclick="uploadFile()">
+        <span class="material-symbols-rounded">upload_file</span>
+        Upload from file
+      </button>
+
+      <button id="upload-button-2" onclick="uploadLink()">
+        <span class="material-symbols-rounded">add_link</span>
+        Upload from URL
+      </button>
     </div>
+  </div>
 
-    <audio crossorigin="anonymous" id="audio-element" onplay="analyse()" onpause="stopAnalysis()" src="https://linfindel.github.io/cdn/Cry_Me_A_River.mp3" controls></audio>
+  <div id="skew-controls" class="card column">
+    <h1 id="output">Skew</h1>
 
-    <div class="column">
-        <div class="row">
-            <button id="upload-button-1" onclick="uploadFile()">
-                <span class="material-symbols-rounded">upload_file</span>
-                Upload from file
-            </button>
-
-            <button id="upload-button-2" onclick="uploadLink()">
-                <span class="material-symbols-rounded">add_link</span>
-                Upload from URL
-            </button>
-        </div>
-    </div>
-
-    <div id="skew-controls" class="card column">
-        <h1 id="output">Skew</h1>
-
-        <div class="row">
-            <button id="skew-button-1" onclick="changeSkew('red')" class="card">
-                <span class="material-symbols-rounded">tune</span>
-                Skew Red/Orange
-            </button>
+    <div class="row">
+      <button id="skew-button-1" onclick="changeSkew('red')" class="card">
+        <span class="material-symbols-rounded">tune</span>
+        Skew Red/Orange
+      </button>
             
-            <button id="skew-button-2" onclick="changeSkew('green')" class="card">
-                <span class="material-symbols-rounded">tune</span>
-                Skew Green/Yellow
-            </button>
+      <button id="skew-button-2" onclick="changeSkew('green')" class="card">
+        <span class="material-symbols-rounded">tune</span>
+        Skew Green/Yellow
+      </button>
 
-            <button id="skew-button-3" onclick="changeSkew('blue')" class="card">
-                <span class="material-symbols-rounded">tune</span>
-                Skew Blue
-            </button>
-        </div>
+      <button id="skew-button-3" onclick="changeSkew('blue')" class="card">
+        <span class="material-symbols-rounded">tune</span>
+        Skew Blue
+      </button>
     </div>
+  </div>
 
-    <script>
-        if (localStorage.getItem("continue") != "true") {
-            location.href = "warning.html";
-        }
-    </script>
-    <script src="kandinsky.js"></script>
+  <script>
+    if (localStorage.getItem("continue") != "true") {
+      location.href = "warning.html";
+    }
+  </script>
+  <script src="kandinsky.js"></script>
 </body>
 </html>
