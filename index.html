@@ -20,6 +20,22 @@
     <h1>Kandinsky Engine</h1>
   </div>
 
+  <div class="card column" id="music-player-prompt">
+    <h2>Check out my Music Player, which uses a newer version than this demo</h2>
+
+    <div class="row">
+      <button onclick="location.href = 'https://linfindel.github.io/music'">
+        <span class="material-symbols-rounded">open_in_new</span>
+        Open Music Player
+      </button>
+
+      <button onclick="document.getElementById('music-player-prompt').remove();">
+        <span class="material-symbols-rounded">close</span>
+        Dismiss
+      </button>
+    </div>
+  </div>
+
   <audio crossorigin="anonymous" id="audio-element" onplay="analyse()" onpause="stopAnalysis()" src="https://linfindel.github.io/cdn/Blinding Lights.mp3" controls></audio>
 
   <div class="column">
